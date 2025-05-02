@@ -1,5 +1,6 @@
 @echo off
-echo Dateien werden geholt
+echo Dateien werden geholt...
+git pull
 echo Dateien werden hochgeladen...
 git add bau.pdf
 git add bau.docx
