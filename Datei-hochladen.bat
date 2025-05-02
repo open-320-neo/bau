@@ -1,0 +1,11 @@
+@echo off
+echo Dateien werden geholt
+echo Dateien werden hochgeladen...
+git add bau.pdf
+git add bau.docx
+git add Datei-hochladen.bat
+git commit -m "Dokumentation geändert"
+git push
+echo Dateien wurden hochgeladen...
+echo und in ein paar Minuten verfügbar auf der Webseite...
+pause
