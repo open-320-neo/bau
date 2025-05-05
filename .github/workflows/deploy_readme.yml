@@ -1,4 +1,5 @@
-name: Deploy README.pdf
+name: Deploy README.pdf to GitHub Pages
+
 on:
   push:
     branches: ["main"]
@@ -9,21 +10,18 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout Repository
+      - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Create docs folder and move README.pdf
+      - name: Prepare docs directory
         run: |
           mkdir -p docs
           cp README.pdf docs/README.pdf
 
-      - name: Commit docs folder (if needed)
-        run: |
-          git config --global user.name "github-actions[bot]"
-          git config --global user.email "github-actions[bot]@users.noreply.github.com"
-          git add docs/README.pdf
-          git commit -m "Add README.pdf to docs" || echo "No changes to commit"
-          git push
+      - name: Upload docs as GitHub Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: docs
 
   deploy:
     needs: build
@@ -37,6 +35,8 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
 
     runs-on: ubuntu-latest
+
     steps:
       - name: Deploy to GitHub Pages
+        id: deployment
         uses: actions/deploy-pages@v4
