@@ -1,9 +1,11 @@
 @echo off
 echo Dateien werden geholt...
+echo Bitte überprüfe zuerst Änderungen an dem Inhalt
 git pull
+pause
 echo Dateien werden hochgeladen...
-git add bau.pdf
-git add bau.docx
+git add README.pdf
+git add README.docx
 git add Datei-hochladen.bat
 git commit -m "Dokumentation geändert"
 git push
